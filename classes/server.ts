@@ -3,6 +3,8 @@ import { SERVER_PORT } from "../globals/environment";
 import socketIO from "socket.io";
 import http from "http";
 
+import * as socket from "../sockets/socket";
+
 export default class Server {
   private static _instance: Server;
   public app: express.Application;
@@ -27,6 +29,10 @@ export default class Server {
     console.log("listening sockets");
     this.io.on("connection", (client) => {
       console.log("new client connected");
+
+      socket.message(client);
+
+      socket.handleDisconnect(client);
     });
   }
 
