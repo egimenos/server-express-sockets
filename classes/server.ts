@@ -4,6 +4,7 @@ import socketIO from "socket.io";
 import http from "http";
 
 import * as socket from "../sockets/socket";
+import { connectUser } from "../sockets/socket";
 
 export default class Server {
   private static _instance: Server;
@@ -28,8 +29,9 @@ export default class Server {
   private listenSockets() {
     console.log("listening sockets");
     this.io.on("connection", (client) => {
-      console.log("new client connected");
-
+      socket.connectUser(client);
+      console.log("new client connected with id", client.id);
+      socket.configUser(client, this.io);
       socket.message(client, this.io);
 
       socket.handleDisconnect(client);
