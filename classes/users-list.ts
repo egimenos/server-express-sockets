@@ -19,7 +19,7 @@ export class UsersList {
   }
 
   public getUsersList() {
-    return this.list;
+    return this.list.filter((user) => user.name !== "not identified");
   }
   public getUser(id: string) {
     return this.list.find((user: User) => user.id === id);
