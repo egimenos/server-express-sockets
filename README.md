@@ -4,7 +4,7 @@ Just a basic Express server to play with websockets.
 
 Clients:
 
-`TBD`
+`https://github.com/EGimenoS/sockets-chat-angular`
 
 ### Usage
 
